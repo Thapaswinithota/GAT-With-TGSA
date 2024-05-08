@@ -1,5 +1,5 @@
-# TGSA
-TGSA: Protein-Protein Association-Based Twin Graph Neural Networks for Drug Response Prediction with Similarity Augmentation
+# TGSA with GAT
+GAT: A Graph Attention Networks for Enhanced Protein-Protein Interaction and Drug Response Prediction
 
 # Overview
 Here we provide an implementation of Twin Graph neural networks with Similarity Augmentation (TGSA) in Pytorch and PyTorch Geometric. The repository is organised as follows:
@@ -18,12 +18,12 @@ Cancel changes
 - Install the necessary packages.  
   conda install -c rdkit rdkit  
   pip install fitlog   
-  pip install torch (1.6.0)   
+  pip install torch (1.9.0)   
   pip install torch-cluster (1.5.9) (https://pytorch-geometric.com/whl/)  
   pip install torch-scatter (2.0.6) (https://pytorch-geometric.com/whl/)   
   pip install torch-sparse (0.6.9) (https://pytorch-geometric.com/whl/)   
   pip install torch-spline-conv (1.2.1) (https://pytorch-geometric.com/whl/)   
-  pip install torch-geometric (1.6.1)
+  pip install torch-geometric (1.9.1)
 
 # Implementation
 ## Step1: Data Preprocessing
@@ -38,12 +38,11 @@ Cancel changes
 - `data/9606.protein.links.detailed.v11.0.txt` and `data/9606.protein.info.v11.0.txt` - Extracted from https://stringdb-static.org/download/protein.links.detailed.v11.0/9606.protein.links.detailed.v11.0.txt.gz
 
 ## Step2: Model Training/Testing
-- You can run `python main.py --mode "train"` to train TGDRP or run `python main.py --mode "test"` to test trained TGDRP.
+- You can run `python mainGAT.py --mode "train"` to train TGDRP or run `python mainGAT.py --mode "test"` to test trained TGDRP.
 
 ## Step3: Similarity Augment
 - First, you can run `heterogeneous_graph.py` to generate edges of heterogeneous graphs.
 
-- Then, you can run `main_SA.py` to generate node features of heterogeneous graphs using two GNNs from TGDRP/TGDRP_pre and to fine-tune sequentially the remained parameters from TGDRP/TGDRP_pre.  To be specific, you can use the instruction `python main_SA.py --mode "train"/"test" --pretrain 0/1` to fine-tune TGDRP/TGDRP_pre or to test fine-tuned SA/SA_pre.  
+- Then, you can run `main_SAGAT.py` to generate node features of heterogeneous graphs using two GNNs from TGDRP/TGDRP_pre and to fine-tune sequentially the remained parameters from TGDRP/TGDRP_pre.  To be specific, you can use the instruction `python main_SAGAT.py --mode "train"/"test" --pretrain 0/1` to fine-tune TGDRP/TGDRP_pre or to test fine-tuned SA/SA_pre.  
 
-# License
-MIT
+
